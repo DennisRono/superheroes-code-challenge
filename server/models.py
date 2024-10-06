@@ -31,7 +31,10 @@ class Hero(db.Model, SerializerMixin):
             "super_name": self.super_name,
             "hero_powers": [
                 {
-                    "power": hero_power.power.to_dict(only=("name", "description")),
+                    "id": hero_power.id,
+                    "power": hero_power.power.to_dict(
+                        only=("id", "name", "description")
+                    ),
                     "strength": hero_power.strength,
                 }
                 for hero_power in self.hero_powers
