@@ -73,7 +73,7 @@ class Power(db.Model, SerializerMixin):
     @validates("description")
     def validate_description(self, key, value):
         if len(value) < 20:
-            raise ValueError("Description must be at least 20 characters long")
+            raise ValueError("validation errors")
         return value
 
     def __repr__(self):
@@ -92,7 +92,7 @@ class HeroPower(db.Model):
     @validates("strength")
     def validate_strength(self, key, value):
         if value not in ["Strong", "Weak", "Average"]:
-            raise ValueError("Strength must be one of: Strong, Weak, or Average")
+            raise ValueError("validation errors")
         return value
 
     def to_dict(self, only=None):

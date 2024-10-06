@@ -73,6 +73,8 @@ def update_power(id):
         power.description = data["description"]
         db.session.commit()
         return jsonify(power.to_dict(only=("id", "name", "description"))), 200
+    except ValueError as e:
+        return jsonify({"errors": [str(e)]}), 400
     except Exception as e:
         return jsonify({"errors": [str(e)]}), 400
 
@@ -88,7 +90,7 @@ def create_hero_power():
         )
         db.session.add(hero_power)
         db.session.commit()
-        return jsonify(hero_power.to_dict()), 201
+        return jsonify(hero_power.to_dict()), 200
     except Exception as e:
         return jsonify({"errors": [str(e)]}), 400
 
