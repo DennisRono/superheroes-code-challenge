@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 from sqlalchemy.orm import validates
-from sqlalchemy_serializer import SerializerMixin
 
 metadata = MetaData(
     naming_convention={
@@ -12,7 +11,7 @@ metadata = MetaData(
 db = SQLAlchemy(metadata=metadata)
 
 
-class Hero(db.Model, SerializerMixin):
+class Hero(db.Model):
     __tablename__ = "heroes"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -47,7 +46,7 @@ class Hero(db.Model, SerializerMixin):
         return f"<Hero {self.id}>"
 
 
-class Power(db.Model, SerializerMixin):
+class Power(db.Model):
     __tablename__ = "powers"
 
     id = db.Column(db.Integer, primary_key=True)
