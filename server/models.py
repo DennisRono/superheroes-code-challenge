@@ -19,7 +19,7 @@ class Hero(db.Model):
     super_name = db.Column(db.String)
 
     # add relationship
-    hero_powers = db.relationship("HeroPower", backref="hero", cascade="all, delete")
+    hero_powers = db.relationship("HeroPower", backref="hero", cascade="all")
 
     # add serialization rules
     def to_dict(self, only=None):
@@ -52,7 +52,6 @@ class Power(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     description = db.Column(db.String)
-
     # add relationship
     hero_powers = db.relationship("HeroPower", backref="power", cascade="all, delete")
 
